@@ -16,14 +16,13 @@ import java.util.Collections;
 @RestController
 @RequestMapping("/bot")
 public class AIController {
-    String token = "pat_qUtgkTdfsEZ8My2ebhfUi08JddVzok1IBhdysRmKNbSlMHxZfEc9yqBU5nQoUwHy";
+    String token = "YouToken";
     String botID = "7509302961341431871";
     String userID = "@user6774265348";
 
     @RequestMapping("/ask")
     public SseEmitter get_ask(String mes) {
         // Get an access_token through personal access token or oauth.
-
 
         SseEmitter sseEmitter = new SseEmitter();
 
