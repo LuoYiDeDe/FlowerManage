@@ -63,7 +63,7 @@ public class CollectionManage {
         List<Products> productsList = new ArrayList<>();
         List<Map<Integer, List<Products>>> singleton = Singleton();
         if (singleton.size() == 0){
-            //没有该用户时
+            //没有任何该用户时
             productsList.add(products);
             //创建用户存储空间
             Map<Integer,List<Products> > productsMap = new HashMap<>();
@@ -78,6 +78,14 @@ public class CollectionManage {
                     productsList = productsList1;
                     //添加商品进入列表
                     productsList.add(products);
+                }else {
+                    //没有该用户时
+                    productsList.add(products);
+                    //创建用户存储空间
+                    Map<Integer,List<Products> > productsMap = new HashMap<>();
+                    productsMap.put(userid,productsList);
+                    //加入到内存
+                    singleton.add(productsMap);
                 }
             }
         }

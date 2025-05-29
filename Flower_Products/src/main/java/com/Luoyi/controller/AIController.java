@@ -16,7 +16,7 @@ import java.util.Collections;
 @RestController
 @RequestMapping("/bot")
 public class AIController {
-    String token = "YouToken";
+    String token = "pat_qUtgkTdfsEZ8My2ebhfUi08JddVzok1IBhdysRmKNbSlMHxZfEc9yqBU5nQoUwHy";
     String botID = "7509302961341431871";
     String userID = "@user6774265348";
 
