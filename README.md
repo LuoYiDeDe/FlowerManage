@@ -6,9 +6,9 @@
 源代码在master 分支下
 
 ## 技术栈
-- Spring Boot 2.7.12
-- Spring Cloud
-- Maven
+- Spring Boot 2.7.12   —Spring Boot 2.7.12
+- Spring Cloud   ——春云
+- Maven   - - - - - - Maven
 - Java 8
 - Lombok
 - Coze API（大模型集成）
@@ -18,7 +18,7 @@
 
 ### 核心模块
 - `Flower_Center`: 注册中心模块，负责服务注册与发现
-  - 使用 `@EnableDiscoveryClient` 注解实现服务发现功能
+  - 使用 `@EnableDiscoveryClient   启用服务发现客户端` 注解实现服务发现功能
 
 ### 业务模块
 - `Flower_Login`: 登录认证模块
