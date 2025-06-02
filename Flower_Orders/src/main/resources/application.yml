@@ -1,0 +1,57 @@
+server:
+  port: 8087
+spring:
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      discovery:
+        server-addr: localhost:8848
+        namespace: public
+  application:
+    name: MyOrderService
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/flower_project?characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: 444223
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+  rabbitmq:
+    host: 192.168.204.202
+    port: 5672
+    username: admin
+    password: 123123
+    virtual-host: /
+    connection-timeout: 20000
+    listener:
+      type: simple
+      simple:
+        # 每个消费者可以同时处理的消息数量
+        prefetch: 1
+        # 消费者最小数量
+        concurrency: 1
+        # 消费者最大数量
+        max-concurrency: 10
+        # 是否支持重试
+        retry:
+          enabled: true
+          # 最大重试次数
+          max-attempts: 2
+          # 第一次和第二次重试的间隔
+          initial-interval: 3000
+          # 重试最大时间间隔
+          max-interval: 10000
+mybatis:
+  mapper-locations: classpath:mybatis/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000

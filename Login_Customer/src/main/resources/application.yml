@@ -1,0 +1,13 @@
+server:
+  port: 8085
+spring:
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      discovery:
+        server-addr: localhost:8848
+        namespace: public
+  application:
+    name: MyLoginCustomer
+server_url:
+  host-user-service: http://MyLoginService

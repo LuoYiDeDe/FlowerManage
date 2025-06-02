@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Luoyi.mapper.OrderMapper">
+
+
+    <insert id="insert" parameterType="com.Luoyi.bean.Orders">
+        <selectKey keyColumn="id" keyProperty="id" order="AFTER" resultType="int">
+            select last_insert_id()
+        </selectKey>
+        INSERT INTO orders
+        (user_id, order_no, total_amount, pay_status, order_status, address, pay_time)
+        VALUES
+        (#{userId}, #{orderNo}, #{totalAmount}, #{payStatus}, #{orderStatus}, #{address}, now())
+    </insert>
+
+    <select id="getAllOrdersToday" resultType="com.Luoyi.bean.Orders">
+        SELECT *
+        FROM orders
+        WHERE DATE(pay_time) = CURRENT_DATE();
+    </select>
+
+</mapper>
