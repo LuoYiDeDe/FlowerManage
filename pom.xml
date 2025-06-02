@@ -25,6 +25,7 @@
         <module>Flower_Orders</module>
         <module>Flower_Coupons</module>
         <module>Flower_Users</module>
+        <module>Flower_Points</module>
     </modules>
 
     <properties>
