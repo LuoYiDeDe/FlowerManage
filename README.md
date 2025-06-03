@@ -3,12 +3,12 @@
 ## 项目简介
 这是一个基于 Spring Cloud 的微服务项目，采用模块化设计，实现了花店相关的业务功能。
 
-源代码在master 分支下
+数据库表信息在MySQL.sql中
 
 ## 技术栈
 - Spring Boot 2.7.12   —Spring Boot 2.7.12
-- Spring Cloud   ——春云
-- Maven   - - - - - - Maven
+- Spring Cloud  
+- Maven   
 - Java 8
 - Lombok
 - Coze API（大模型集成）
