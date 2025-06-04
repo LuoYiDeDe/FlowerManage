@@ -1,12 +1,14 @@
 package com.Luoyi.controller;
 
+import com.Luoyi.bean.PageReuslt;
 import com.Luoyi.bean.Products;
 import com.Luoyi.bean.Result;
 import com.Luoyi.server.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/product")
 @RestController
@@ -16,15 +18,16 @@ public class ProductController {
     private ProductService productService;
 
     /*
-     * @Description: 获取所有花束
+     * @Description: 分页获取所有花束
      * @param
      * @return com.Luoyi.bean.Result
      * @Author: 落一.
      * @Date: 2025/5/28 16:42
      */
     @RequestMapping("/getall")
-    public Result getAll(){
-        List<Products> allProducts = productService.getAllProducts();
+    public Result getAll(@RequestParam(defaultValue = "1") Integer pageNum,
+                         @RequestParam(defaultValue = "16") Integer pageSize){
+        PageReuslt<Products> allProducts = productService.getAllProducts(pageNum, pageSize);
         return Result.success(allProducts);
     }
     /*

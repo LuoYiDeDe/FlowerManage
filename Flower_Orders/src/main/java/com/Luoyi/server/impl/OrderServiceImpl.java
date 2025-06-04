@@ -2,10 +2,13 @@ package com.Luoyi.server.impl;
 
 import com.Luoyi.bean.OrderItems;
 import com.Luoyi.bean.Orders;
+import com.Luoyi.bean.PageReuslt;
 import com.Luoyi.bean.vo.ManageOrderVO;
 import com.Luoyi.client.ProductFeignClient;
 import com.Luoyi.mapper.OrderItemMapper;
 import com.Luoyi.mapper.OrderMapper;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.Luoyi.server.OrderService;
@@ -52,8 +55,22 @@ public class OrderServiceImpl implements OrderService {
      * @Date: 2025/5/23 10:22
      */
     @Override
-    public List<Orders> getOrdersByUserId(Integer userId) {
-        return orderMapper.selectByUserId(userId);
+    public PageReuslt<Orders> getOrdersByUserId(Integer userId, Integer pageNum, Integer pageSize) {
+        //开启分页
+        PageHelper.startPage(pageNum,pageSize);
+        //获取用户订单列表
+        List<Orders> ordersList = orderMapper.selectByUserId(userId);
+        //获取分页信息
+        PageInfo<Orders> ordersPageInfo = new PageInfo<>(ordersList);
+        //封装结果
+        PageReuslt<Orders> pageReuslt = new PageReuslt<>();
+        pageReuslt.setList(ordersList);
+        pageReuslt.setPageNum(ordersPageInfo.getPageNum());
+        pageReuslt.setPageSize(ordersPageInfo.getPageSize());
+        pageReuslt.setTotal(ordersPageInfo.getTotal());
+        pageReuslt.setPages(ordersPageInfo.getPages());
+        //返回
+        return pageReuslt;
     }
     /*
      * @Description: 获取订单明细

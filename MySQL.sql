@@ -106,7 +106,7 @@ CREATE TABLE points_exchange (
                                  user_id INT NOT NULL COMMENT '用户ID',
                                  product_id INT NOT NULL COMMENT '商品ID',
                                  exchange_points INT NOT NULL COMMENT '消耗积分',
-                                 exchange_time DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '兑换时间',
+                                  exchange_time DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '兑换时间',
                                  status TINYINT DEFAULT 0 COMMENT '状态：0=待处理，1=已发货，2=已完成',
                                  tracking_number VARCHAR(50) COMMENT '物流单号',
                                  FOREIGN KEY (user_id) REFERENCES users(id),

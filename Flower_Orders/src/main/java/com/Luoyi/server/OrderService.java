@@ -3,6 +3,7 @@ package com.Luoyi.server;
 
 import com.Luoyi.bean.OrderItems;
 import com.Luoyi.bean.Orders;
+import com.Luoyi.bean.PageReuslt;
 import com.Luoyi.bean.vo.ManageOrderVO;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public interface OrderService {
 
     void createOrderItem(OrderItems orderItems);
 
-    List<Orders> getOrdersByUserId(Integer userId);
+    PageReuslt getOrdersByUserId(Integer userId, Integer pageNum, Integer pageSize);
 
     List<OrderItems> getOrderItems(Integer orederId);
 

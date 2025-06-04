@@ -1,12 +1,11 @@
 package com.Luoyi.server;
 
+import com.Luoyi.bean.PageReuslt;
 import com.Luoyi.bean.Products;
-
-import java.util.List;
 
 public interface ProductService {
 
-    public List<Products> getAllProducts();
+    public PageReuslt<Products> getAllProducts(Integer pageNum, Integer pageSize);
 
     public Products queryProductById(Integer id);
 

@@ -11,6 +11,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -69,11 +70,15 @@ public class OrderController {
      * @Date: 2025/5/23 10:24
      */
     @RequestMapping("/getorders")
-    public Result getOrders(Integer userId){
-        List<Orders> orders = orderService.getOrdersByUserId(userId);
+    public Result getOrders(Integer userId,
+                            @RequestParam(defaultValue = "1") Integer pageNum,
+                            @RequestParam(defaultValue = "3") Integer pageSize){
+        PageReuslt orders = orderService.getOrdersByUserId(userId, pageNum, pageSize);
+        //取出订单列表
+        List<Orders> list = orders.getList();
         List<OrderVO> orderVOList = new ArrayList<>();
-
-        for (Orders order : orders) {
+        //循环填充VO信息
+        for (Orders order : list) {
             OrderVO orderVO = new OrderVO();
             //设置vo信息
             Integer id = order.getId();
@@ -82,7 +87,7 @@ public class OrderController {
             orderVO.setOrderNo(order.getOrderNo());
             orderVO.setOrderStatus(order.getOrderStatus());
             orderVO.setCreatedAt(order.getCreatedAt());
-
+            //获取订单明细填充VO
             List<OrderItems> orderItems = orderService.getOrderItems(id);
             for (OrderItems orderItem : orderItems) {
                 Integer productId = orderItem.getProductId();
@@ -91,13 +96,14 @@ public class OrderController {
                 Products data = (Products) flower.getData();
                 orderVO.setOrderName(data.getName());
                 orderVO.setImage(data.getImageUrl());
-                orderVO.setQuantity(orderItem.getQuantity());
+                orderVO.setQuantity(orderItem.getQuantity());// 购买数量
             }
             //存入数组
             orderVOList.add(orderVO);
         }
-
-        return Result.success(orderVOList);
+        //将vo装入pageResult中返回
+        orders.setList(orderVOList);
+        return Result.success(orders);
     }
     /*
      * @Description: 获取当日营销总额 和 订单总数
