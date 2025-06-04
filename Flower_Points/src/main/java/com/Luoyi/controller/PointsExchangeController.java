@@ -28,7 +28,7 @@ public class PointsExchangeController {
     @Autowired
     private PointsProductsService pointsProductsService;
     /*
-     * @Description: 积分订单
+     * @Description: 新增积分订单
      * @param pointsExchangeDTO
      * @return com.Luoyi.bean.Result
      * @Author: 落一.
@@ -70,6 +70,30 @@ public class PointsExchangeController {
             pointsExchangeVOS.add(pointsExchangeVO);
         }
         return Result.success(pointsExchangeVOS);
+    }
+    /*
+     * @Description: 获取所有积分订单
+     * @param
+     * @return com.Luoyi.bean.Result
+     * @Author: 落一.
+     * @Date: 2025/6/4 11:17
+     */
+    @RequestMapping("/getallexchange")
+    public Result getallExchages(){
+        List<PointsExchange> allPointsExchange = pointsExchangeService.getAllPointsExchange();
+        return Result.success(allPointsExchange);
+    }
+    /*
+     * @Description: 修改订单状态
+     * @param id
+     * @return com.Luoyi.bean.Result
+     * @Author: 落一.
+     * @Date: 2025/6/4 11:41
+     */
+    @RequestMapping("/updateexchangestatus")
+    public Result updateStatus(Integer id,Integer status){
+        pointsExchangeService.updatePointsExchange(id,status);
+        return Result.success();
     }
 
 

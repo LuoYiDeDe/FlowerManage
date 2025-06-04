@@ -4,6 +4,7 @@ import com.Luoyi.bean.PointsProducts;
 import com.Luoyi.bean.Result;
 import com.Luoyi.server.PointsProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,7 +34,7 @@ public class PointsProductsController {
      * @Date: 2025/5/31 9:28
      */
     @RequestMapping("/addpointsproducts")
-    public Result addPointsProduct(PointsProducts products){
+    public Result addPointsProduct(@RequestBody PointsProducts products){
         if (productsService.addPointsProducts(products) > 0){
             return Result.success();
         }else {
@@ -48,7 +49,7 @@ public class PointsProductsController {
      * @Date: 2025/5/31 9:28
      */
     @RequestMapping("/updatepointsproducts")
-    public Result updatePointsProduct(PointsProducts products){
+    public Result updatePointsProduct(@RequestBody PointsProducts products){
         if (productsService.updatePorintsProducts(products) > 0){
             return Result.success();
         }else {

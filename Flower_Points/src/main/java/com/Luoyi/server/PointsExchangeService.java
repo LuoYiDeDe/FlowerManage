@@ -8,7 +8,7 @@ public interface PointsExchangeService {
 
     int addPointsExchange(PointsExchange pointsExchange);
 
-    int updatePointsExchange(PointsExchange pointsExchange);
+    int updatePointsExchange(Integer id,Integer status);
 
     List<PointsExchange> getAllPointsExchange();
 

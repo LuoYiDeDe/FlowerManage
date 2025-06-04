@@ -11,7 +11,7 @@
             <if test="stock != null">stock = #{stock},</if>
             <if test="category != null">category = #{category},</if>
             <if test="imageUrl != null">image_url = #{imageUrl},</if>
-            <if test="status != null">status = #{status},</if>
+            <if test="status != null">`status` = #{status},</if>
         </set>
         WHERE id = #{id}
     </update>

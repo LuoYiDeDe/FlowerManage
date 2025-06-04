@@ -18,7 +18,7 @@ public interface PointsExchangeMapper {
     int deleteById(Integer id);
 
     @Update("UPDATE points_exchange SET status = #{status} where id = #{id}")
-    int update(PointsExchange pointsExchange);
+    int update(Integer id,Integer status);
 
     @Select("SELECT * FROM points_exchange WHERE id = #{id}")
     @Results({

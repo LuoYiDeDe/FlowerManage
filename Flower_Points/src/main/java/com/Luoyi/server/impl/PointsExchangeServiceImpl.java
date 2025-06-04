@@ -32,8 +32,8 @@ public class PointsExchangeServiceImpl implements PointsExchangeService {
      * @Date: 2025/5/31 14:45
      */
     @Override
-    public int updatePointsExchange(PointsExchange pointsExchange) {
-        return pointsExchangeMapper.update(pointsExchange);
+    public int updatePointsExchange(Integer id,Integer status) {
+        return pointsExchangeMapper.update(id,status);
     }
     /*
      * @Description: 获取积分订单
